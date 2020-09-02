@@ -95,7 +95,7 @@ obs3_mu = np.mean(obs3)
 
 obs3_sigma = np.std(obs3)
 
-print("The mean of the sum of the two 1000 point draws is: ",obs3_mu," and the standard deviation is: ",obs3_sigma)
+print("The mean of the sum of the two 1000 point draws is: ",obs3_mu," and the standard deviation is: ",obs3_sigma)\\
 \end{lstlisting}
 
 %-------------------------------------------------------
@@ -159,7 +159,7 @@ for i in range(1000):
 axes[1,1].hist(int_array, bins = 15)
 axes[1,1].set_title('n=250')
 
-figure.tight_layout()
+figure.tight_layout()\\
 \end{lstlisting}
 
 %-------------------------------------------------------
@@ -185,7 +185,7 @@ int_array2 = np.subtract(obs4,int_array1)
 int_array3 = np.multiply(int_array2,int_array2)
 stdev_obs4 = np.sqrt(np.sum(int_array3)/(num_obs4-1))
 
-print("The calculated mean is: ",mean_obs4," and the standard deviation is: ",stdev_obs4)
+print("The calculated mean is: ",mean_obs4," and the standard deviation is: ",stdev_obs4)\\
 \end{lstlisting}
 
 
@@ -240,7 +240,7 @@ print(mean_arr_est)
 int_array4 = np.full([num_obs5,2], mean_arr_est)
 D_cent = np.subtract(obs5,int_array4)
 temp_array = np.matmul(np.transpose(D_cent),D_cent)
-print(temp_array/(num_obs5-1))
+print(temp_array/(num_obs5-1))\\
 \end{lstlisting}
 
 %-------------------------------------------------------
@@ -285,7 +285,7 @@ cols = list(dataset.columns)
 dataset[cols] = pd.to_numeric(dataset[cols].stack(), errors='coerce').unstack()
 print("c) There are missing values in the dataset: ",dataset.isnull().any().any())
 dataset_1=dataset.fillna(dataset.mean())
-print("The missing values have been filled with the average of the corresponding columns.")
+print("The missing values have been filled with the average of the corresponding columns.")\\
 \end{lstlisting}
 
 
@@ -348,7 +348,15 @@ Y=1 & 1/6 & 1/3 \\ \hline
 
 \subsection{Problem 2}
 
+Consider the vectors $v_1 = [1, 1, 1]$ and $v_2 = [1, 0, 0]$. These two vectors define a 2-dimensional subspace of $\mathbf{R}^3$. Project the points $P_1 = [3, 3, 3], P_2 = [1, 2, 3], P_3 = [0, 0, 1]$ on this subspace. Write down the coordinates of the three projected points. (You can use numpy or a calculator to do arithmetic if you want).
+
 \subsubsection{Solution to problem 2}
+The dot product of $v_1 and v_2$ is not zero. Also, $v_1$ is not a unit vector, so it is now written as $[1/3, 1/3, 1/3]$ Therefore, we need to find an orthogonal basis. That is done by projecting $v_1$ onto $v_2$. So, $v_1^\perp = v_1 - proj_{v_2}v_1 = v_1 - \frac{v_1^T v_2}{v_2^T v_2}v_2 = [0, 1/3, 1/3]$.\\ 
+
+Normalizing them, we have the basis vectors as $[0, 1/2, 1/2]$ and $[1, 0, 0]$. Now, we have a perpendicular set of vectors $v_1^\perp$ and $v_2$, defining the subspace. Projecting the three points on the subspace is a standard orthogonal projection. The formula is given below:\\
+$P^\perp$ = $Proj_{v_1^\perp} P + Proj_{v_2} P = \frac{P^\perp v_1^\perp}{(v_1^\perp)^T v_1^\perp} v_1^\perp + \frac{P^\perp v_2}{(v_2)^T v_2} v_2 \qquad \forall P \in \{P_1, P_2, P_3\}$\\
+
+Therefore, the projections of $P_1, P_2, and P_3$ on the subspace are: $[2/3, 2/3, 2/3]$, $[1/4, 1/2, 3/4]$, and $[0, 0, 1/2]$, respectively.
 
 %-------------------------------------------------------
 
