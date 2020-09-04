@@ -369,10 +369,10 @@ Consider the vectors $v_1 = [1, 1, 1]$ and $v_2 = [1, 0, 0]$. These two vectors 
 \subsubsection{Solution to problem 2}
 The dot product of $v_1$ and $v_2$ is not zero. Also, $v_1$ is not a unit vector, so it is now written as $[1/3, 1/3, 1/3]$ Therefore, we need to find an orthogonal basis. That is done by projecting $v_1$ onto $v_2$. So, $v_1^\perp = v_1 - proj_{v_2}v_1 = v_1 - \frac{v_1^T v_2}{v_2^T v_2}v_2 = [0, 1/3, 1/3]$.\\ 
 
-Normalizing them, we have the basis vectors as $[0, 1/2, 1/2]$ and $[1, 0, 0]$. Now, we have a perpendicular set of vectors $v_1^\perp$ and $v_2$, defining the subspace. Projecting the three points on the subspace is a standard orthogonal projection. The formula is given below:\\
+We now have the basis vectors as $[0, 1/3, 1/3]$ and $[1, 0, 0]$. Now, we have a perpendicular set of vectors $v_1^\perp$ and $v_2$, defining the subspace. Projecting the three points on the subspace is a standard orthogonal projection. The formula is given below:\\
 $P^\perp$ = $Proj_{v_1^\perp} P + Proj_{v_2} P = \frac{P^\perp v_1^\perp}{(v_1^\perp)^T v_1^\perp} v_1^\perp + \frac{P^\perp v_2}{(v_2)^T v_2} v_2 \qquad \forall P \in \{P_1, P_2, P_3\}$\\
 
-Therefore, the projections of $P_1, P_2, and P_3$ on the subspace are: $[2/3, 2/3, 2/3]$, $[1/4, 1/2, 3/4]$, and $[0, 0, 1/2]$, respectively.
+Therefore, the projections of $P_1, P_2, and P_3$ on the subspace are: $[3, 3, 3]$, $[1, 5/2, 5/2]$, and $[0, 1/2, 1/2]$, respectively.
 
 %-------------------------------------------------------
 
