@@ -1,0 +1,330 @@
+\documentclass[12pt]{article}%
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{listings}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2.2cm, right=2.2cm]%
+{geometry}
+\usepackage{times}
+\usepackage{amsmath}
+\usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{csquotes}
+\usepackage{graphicx}%
+\setcounter{MaxMatrixCols}{30}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\begin{document}
+
+\title{EE460J - Lab 3}
+\author{Can Gokalp, (EID: CG39283), Priyadarshan Patil (EID:PP22352)}
+\date{\today}
+\maketitle
+
+\section{All questions}
+
+
+\subsection{Problem 1}
+
+Read Shannon's 1948 paper 'A Mathematical Theory of Communication'. Focus on pages 1-19 (up to Part II), the remaining part is more relevant for communication. http://math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf Summarize what you learned briefly (e.g. half a page).
+
+\subsubsection{Solution to problem 1}
+
+Shannon's paper, "A Mathematical Theory of Communication", aims to tackle a fundamental problem of communication (as of 1948) relating to noiseless communication systems. The first part of the paper provides a brief intuition for the choice of the logarithmic function for information transfer, and then defines a communication system in terms of five components. The first two components are information source which provides the information to be transmit, and transmitter, which encodes the message in the form of a signal that can be transmit. The last two components are receiver and destination, which are the inverse of the transmitter and source, respectively. The transmitter and receiver are connected by a channel which is the medium used to transmit the signal, and that is where noise is likely to be introduced.\\
+
+The next few subsections look at the mathematical properties of discrete noiseless systems. Starting with the capacity of a channel, there is a brief discussion on allowable sequences, sources of information, approximations and n-grams. Generally, these sections try to lay the foundation for modern natural language processing (NLP), by talking about series of approximations to English, establishing sentences as a Markov (Markoff?) process and specifically, Ergodic processes.
+
+After this formulation, a measure of uncertainity is introduced. This measure is entropy, and it has to follow three properties relating to the probability distribution, i.e., continuity, monotonically increasing function of number of choices and indifference to successive choices. The only function satisfying said properties is the proposed "Shannon" formula which defines entropy as:\\
+
+$H = -K \Sigma_{i=1}^n p_i logp_i$\\
+
+A few properties of this formula are explored such as behavior at extremes, behavior under joint distributions, conditional entropy, etc. The last few subsections talk about application of entropy to an information source, and how encoding/decoding operations can be represented to minimize the number of required bits. The fundamental theorem for a noiseless channel provides a hard upper bound for the average symbols per second transmitted for a given channel. Lastly, an example is provided to show how the average number of bits is obtained for a toy example with a special encoding scheme. \\
+
+
+
+%-------------------------------------------------------
+
+\subsection{Problem 2}
+
+\textbf{Scraping, Entropy and ICML papers}\\
+
+ICML is a top research conference in Machine learning. Scrape all the pdfs of all ICML 2017 papers from http://proceedings.mlr.press/v70/.
+\begin{enumerate}
+    \item What are the top 10 common words in the ICML papers?
+    \item Let Z be a randomly selected word in a randomly selected ICML paper. Estimate the entropy of Z.
+    \item Synthesize a random paragraph using the marginal distribution over words.
+    \item (Extra credit) Synthesize a random paragraph using an n-gram model on words. Synthesize a random paragraph using any model you want. Top five synthesized text paragraphs win bonus (+30 points).\\
+\end{enumerate}
+
+\subsubsection{Solution to problem 2}
+ 
+The top 10 most common words and their frequencies can be found in Table \ref{table:Q2} below. 
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Word} & \textbf{Count} \\ \hline
+the           & 150,968         \\ \hline
+of            & 76,160          \\ \hline
+and           & 66,081          \\ \hline
+in            & 54,055          \\ \hline
+to            & 50,705          \\ \hline
+cid           & 46,285          \\ \hline
+is            & 40,360          \\ \hline
+for           & 36,792          \\ \hline
+we            & 34,037          \\ \hline
+that          & 24,842          \\ \hline
+\end{tabular}
+\caption{Top 10 common words in ICML 2017}
+\label{table:Q2}
+\end{table}
+
+If \textbf{Z} is a randomly chosen word in a randomly selected ICML paper, the Shannon entropy of Z is calculated to be 15.793825595633031.
+
+The paragraph below is a randomly generated paragraph from the marginal distribution over words (100 i.i.d draws):
+
+\begin{displayquote}
+'subtract, biological, mineig, proprietary, freq, kushal, deeplearningbook, nowcasting, abilities, multimodal, Xi, timally, zerocomponent, sin$\pi$, tiallyhigherthanitsaccuracy, mfccs, lindsten, fewcigarettesharmhealth, msr, uldas, ofﬁce, $\alpha$pe, ues, u44, qi, wherex, wiki10, yehuda, vaguely, friends, themis, gigabytes, maharaj, teriori, unde, $\alpha$pe, cussed, tilt, $\rho$2x2, swaps, emulator, spaces1, recsys, memorisation, owing, kj, kathuria, tuat, s$\alpha$s, satb, zhenlong, $\tau$st, los, $\sigma$d, ernment, $\phi$k, auxiliary, paving, bishop, selc, 991flop, erroneously, version 2, wardsmoreintrinsicallymotivatedsolutionstocontinue, s4, whilethechatteringpersists, bothofthesedatasetshaveverylowerror, s$\theta$i, purely, eliassi, polymorphism, c1n, popped, colmenarejo, harsh, xxxi, x0sq, unblocked, operations, sivity, longing, nottingham, inde, mehlhorn, dyit, huck, akinori, $\gamma$2, kstms, heave, gpus, les, d$\pi$, parameterizationmemory, icar, packard, approximator2, ionization, rcnns, traversals, hypeprlanes'
+\end{displayquote}
+
+The paragraph below is a randomly generated paragraph from the n-gram model (n=5):
+
+\begin{displayquote}
+The main motivation for considered the training cost can be reduced to the optimization problem, so running the model in real time may be learned from data, as well as when $\alpha$ grows sub-linearly to n. And$ O(n^2)$ space embeddings of entities and relations can be the same function, we validate our theoretical results about ‘mean predictor’ and ‘weisfeiler-lehman kernel with base kernel' at https://github.com/andersbll/theano since we would like to thank Jeff Johnson for his help but can potentially re-weight the units in the layer directly below, but scientifically interesting associations between discrepancy between barycenters and time series prediction length principle.
+\end{displayquote}
+
+%-------------------------------------------------------
+
+\subsection{Problem 3}
+
+\textbf{Starting in Kaggle}\\
+
+Soon you will be participating in the in-class Kaggle competition made for this class. In that one, you will be participating on your own. This is a warm-up - the more effort and research you put into this assignment the easier it will be to compete into the real Kaggle competition that you will need to do soon. We expect you to spend 10 times more effort on this problem compared to the others.
+\begin{enumerate}
+    \item Let's start with our first Kaggle submission in a playground regression competition. Make an account to Kaggle and find https://www.kaggle.com/c/house-prices-advanced-regression-techniques/
+    \item Follow the data preprocessing steps from https://www.kaggle.com/apapiu/house-prices-advanced-regression-techniques/regularized-linear-models. Then run a ridge regression using $\alpha = 0.1$. Make a submission of this prediction, what is the RMSE you get? (Hint: remember to exponentiate np.expm1(ypred) your predictions).
+    \item Compare a ridge regression and a lasso regression model. Optimize the alphas using cross validation. What is the best score you can get from a single ridge regression model and from a single lasso model?
+    \item Plot the $l_0$ norm (number of nonzeros) of the coefficients that lasso produces as you vary the strength of regularization parameter alpha.
+    \item Add the outputs of your models as features and train a ridge regression on all the features plus the model outputs (This is called Ensembling and Stacking). Be careful not to overfit. What score can you get? (We will be discussing ensembling more, later in the class, but you can start playing with it now).
+    \item Install XGBoost (Gradient Boosting) and train a gradient boosting regression. What score can you get just from a single XGB? (you will need to optimize over its parameters). We will discuss boosting and gradient boosting in more detail later. XGB is a great friend to all good Kagglers!
+    \item Do your best to get the more accurate model. Try feature engineering and stacking many models. You are allowed to use any public tool in python. No non-python tools allowed.
+    \item (Optional) Read the Kaggle forums, tutorials and Kernels in this competition. This is an excellent way to learn. Include in your report if you find something in the forums you like, or if you made your own post or code post, especially if other Kagglers liked or used it afterwards.
+    \item Be sure to read and learn the rules of Kaggle! No sharing of code or data outside the Kaggle forums. Every student should have their own individual Kaggle account and teams can be formed in the Kaggle submissions with partners. This is more important for live competitions of course.
+    \item As in the real in-class Kaggle competition (which will be next), you will be graded based on your public score (include that in your report) and also on the creativity of your solution. In your report (that you will submit as a pdf file), explain what worked and what did not work. Many creative things will not work, but you will get partial credit for developing them. We will invite teams with interesting solutions to present them in class.\\
+\end{enumerate}
+
+\subsubsection{Solution to problem 3}
+
+
+
+
+
+
+%-------------------------------------------------------
+
+
+
+
+\section*{Appendix A: Code for all problems}
+\label{appendix:code}
+
+\subsubsection*{Importing required libraries}
+\begin{lstlisting}
+
+\end{lstlisting}
+
+
+\subsubsection*{Code for problem 2}
+\begin{lstlisting}
+class PdfConverter:
+
+   def __init__(self, file_path):
+       self.file_path = file_path
+# convert pdf file to a string which has space among words 
+   def convert_pdf_to_txt(self):
+       rsrcmgr = PDFResourceManager()
+       retstr = StringIO()
+       codec = 'utf-8'  # 'utf16','utf-8'
+       laparams = LAParams()
+       device = TextConverter(rsrcmgr, retstr, codec=codec, 
+       laparams=laparams)
+       fp = open(self.file_path, 'rb')
+       interpreter = PDFPageInterpreter(rsrcmgr, device)
+       password = ""
+       maxpages = 0
+       caching = True
+       pagenos = set()
+       for page in PDFPage.get_pages(fp, pagenos, maxpages=maxpages,
+       password=password, caching=caching, check_extractable=True):
+           interpreter.process_page(page)
+       fp.close()
+       device.close()
+       str = retstr.getvalue()
+       retstr.close()
+       return str
+# convert pdf file text to string and save as a text_pdf.txt file
+   def save_convert_pdf_to_txt(self):
+       content = self.convert_pdf_to_txt()
+       txt_pdf = open('text_pdf.txt', 'ab')
+       txt_pdf.write(content.encode('utf-8'))
+       txt_pdf.close()
+        
+pdflist = glob.glob(r"C:\Users\priya\Dropbox\Sorted\UT Austin Academics
+\Fall 20\EE 460 Data science lab\Lab 3\ICML Papers\*.pdf")
+
+for pdf in pdflist:
+    print("Working on: " + pdf + '\n')
+    pdfConverter = PdfConverter(file_path=pdf)
+    #print(pdfConverter.convert_pdf_to_txt())
+    pdfConverter.save_convert_pdf_to_txt()
+    
+# Read all the stored plain text from pdfs
+with open ("text_pdf.txt", "r", encoding="utf-8") as myfile:
+    text=myfile.readlines()
+
+# create the transform
+vectorizer = CountVectorizer()
+# Tokenize and build vocabulary from the text corpus
+vectorizer.fit(text)
+# Summarize the vocabulary
+data = vectorizer.vocabulary_
+
+# This writes the words and counts to a txt file
+with open('Word_counts.txt', 'w', encoding = "utf-8") as f:
+    print(vectorizer.vocabulary_, file=f)
+
+# A function is defined to return top n frequent words from
+a vocabulary list
+def get_top_n_words(corpus, n=None):
+    vec = CountVectorizer().fit(corpus)
+    bag_of_words = vec.transform(corpus)
+    sum_words = bag_of_words.sum(axis=0) 
+    words_freq = [(word, sum_words[0, idx]) for word, idx in 
+    vec.vocabulary_.items()]
+    words_freq =sorted(words_freq, key = lambda x: x[1], 
+    reverse=True)
+    return words_freq[:n]
+
+get_top_n_words(text, 10)
+
+# This converts the counts to raw probabilities of appearance, 
+and drops zero value words, i.e., so rare that their probability
+was rounded down to zero.
+Prob_dist_raw = list(vectorizer.vocabulary_.values())
+Prob_dist = []
+sum_prob = sum(Prob_dist_raw)
+for x in Prob_dist_raw:
+    Prob_dist.append(x/sum_prob)
+#print(Prob_dist)
+Prob_dist = [i for i in Prob_dist if i != 0]
+
+# Entropy calculation below
+entropy = 0
+for i in range(len(Prob_dist)):
+    entropy = entropy + (Prob_dist[i]* math.log2(Prob_dist[i]))
+entropy = entropy*(-1)
+print("The Shannon entropy is calculated to be: ",entropy)
+
+# The block below returns n words chosen according to their
+probability of appearance
+# This is a "paragraph" of 100 words.
+n=100
+keys = np.array(list(vectorizer.vocabulary_.keys()))
+Probs = list(vectorizer.vocabulary_.values())
+sum_prob = sum(Probs)
+for x in range(len(Probs)):
+    Probs[x] = Probs[x]/sum_prob
+np.random.seed(2)
+choice_list = np.random.choice(keys, n, replace=True, p=Probs)
+print(choice_list)
+
+# This block below tokenizes the word corpus
+try: # Use the default NLTK tokenizer.
+    from nltk import word_tokenize, sent_tokenize 
+    word_tokenize(sent_tokenize("This is a foobar sentence.
+    Yes it is.")[0])
+except: # Use a naive sentence tokenizer and toktok.
+    import re
+    from nltk.tokenize import ToktokTokenizer
+    sent_tokenize = lambda x: re.split(r'(?<=[^A-Z].[.?]) 
+    +(?=[A-Z])', x)
+    toktok = ToktokTokenizer()
+    word_tokenize = word_tokenize = toktok.tokenize
+
+
+#This tokenizes our text saved in variable text
+tokenized_text = [list(map(str.lower, word_tokenize(sent))) 
+                  for sent in sent_tokenize(str(text))]
+
+# Preprocess the tokenized text for n-grams language modelling
+n = 5
+train_data, padded_sents = padded_everygram_pipeline(n,
+tokenized_text)
+
+
+model = MLE(n)
+print("The n-gram model is training now...")
+model.fit(train_data, padded_sents)
+print("The model has been trained successfully. The details
+are as follows:")
+print(model.counts)
+
+detokenize = TreebankWordDetokenizer().detokenize
+
+def generate_sentence(model, num_words, random_seed=42):
+    """
+    :param model: An ngram language model from `nltk.lm.model`.
+    :param num_words: Max no. of words to generate.
+    :param random_seed: Seed value for random.
+    """
+    content = []
+    for token in model.generate(num_words, random_seed=random_seed):
+        if token == '<s>':
+            continue
+        if token == '</s>':
+            break
+        content.append(token)
+    return detokenize(content)
+
+
+for i in range(20):
+    print("The random sentence number ",i," is: ")
+    print(generate_sentence(model, 200, random_seed=i))
+\end{lstlisting}
+
+
+\subsubsection*{Code for problem 3}
+\begin{lstlisting}
+
+\end{lstlisting}
+
+
+
+\end{document}
